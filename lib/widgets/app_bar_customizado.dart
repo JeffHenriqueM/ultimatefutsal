@@ -21,6 +21,12 @@ class AppBarCustomizado extends StatelessWidget implements PreferredSizeWidget {
             context.go('/login');
           },
         ),
+        IconButton(
+          icon: const Icon(Icons.table_chart_rounded),
+          onPressed: () {
+            context.go('/tabela');
+          },
+        ),
       ],
     );
   }
