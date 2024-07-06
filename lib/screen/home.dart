@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart'; // Importar foundation para detecção de plataforma
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -7,26 +6,24 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LayoutBuilder(
-        // Use LayoutBuilder para obter informações sobre o layout
-        builder: (BuildContext context, BoxConstraints constraints) {
-          // Verifica se a plataforma é web ou mobile
-          bool isWeb = kIsWeb;
-          bool isMobile = !isWeb &&
-              (defaultTargetPlatform == TargetPlatform.android ||
-                  defaultTargetPlatform == TargetPlatform.iOS);
-
-          return Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  isMobile
-                      ? 'assets/imagem_mobile.jpg'
-                      : 'assets/imagem_web.jpg',
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              return Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: FittedBox(
+                  fit: BoxFit
+                      .fill, // Preenche o container sem manter a proporção
+                  child: Image.asset(
+                    orientation == Orientation.portrait
+                        ? 'assets/imagem_cel.jpg'
+                        : 'assets/imagem_web.jpg',
+                  ),
                 ),
-                fit: BoxFit.cover,
-              ),
-            ),
+              );
+            },
           );
         },
       ),
