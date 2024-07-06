@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ultimatefutsal/widgets/app_bar_customizado.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -6,11 +7,12 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AppBarCustomizado(titulo: 'Ultimate Futsal'),
       body: OrientationBuilder(
         builder: (context, orientation) {
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
-              return Container(
+              return SizedBox(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: FittedBox(
